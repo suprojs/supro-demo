@@ -1,0 +1,51 @@
+{
+    "name": "supro-demo",
+    "license": "MIT",
+    "version": "1.0",
+    "description": "v001@2014-04-23: SUPro Demo",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/olecom/supro-demo.git"
+    },
+    "maintainers": [{
+        "name": "Oleg Verych",
+        "email": "olecom@gmail.com"
+    }],
+    "keywords": [
+        "extjs",
+        "nodejs",
+        "node.js",
+        "node-webkit",
+        "mongodb"
+    ],
+    "webkit": {
+        "plugin": false,
+        "page-cache": false,
+        "java": false
+    },
+    "window": {
+        "title": "Loading application...",
+        "icon":"app_main/css/favicon.png",
+        "toolbar": true,
+        "position": "center",
+        "width": 999,
+        "height": 777,
+        "resizable": true,
+        "show": true,
+        "frame": true
+    },
+    "main": "app_main/app.htm",
+    "engines": {
+        "cygwin": "1.7.9",
+        "node": "0.10.26",
+        "node-webkit": "0.9.2 (node: '0.11.9')"
+    },
+    "extjs":{
+        "version": "4.2.1.883"
+    },
+    "dependencies": {
+        "connect": "2.9.2- (low fat)",
+        "mongodb": "*",
+        "step": "*"
+    }
+}

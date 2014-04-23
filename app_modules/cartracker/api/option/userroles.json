@@ -1,0 +1,10 @@
+{
+"success": true,
+"count": 3,
+"data":
+[
+{ "UserRoleID": 1, "LongName":"Admin", "ShortName": "Admin"  },
+{ "UserRoleID": 2, "LongName":"Boss", "ShortName": "Boss"  },
+{ "UserRoleID": 3, "LongName":"Common", "ShortName": "Common"  }
+]
+}

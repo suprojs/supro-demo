@@ -1,0 +1,10 @@
+{
+"success": true,
+"count": 3,
+"data":
+[
+{ "PositionID": 1, "LongName":"Developer Local", "ShortName": "DevL" },
+{ "PositionID": 2, "LongName":"Developer Remote", "ShortName": "DevR"  },
+{ "PositionID": 3, "LongName":"Administrator", "ShortName": "Adm"  }
+]
+}

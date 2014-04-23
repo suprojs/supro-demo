@@ -1,0 +1,101 @@
+﻿{
+  "success": true,
+  "data": [
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 26",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T09:02:32.852Z",
+      "link": "txt/move?obj=GLOB&id=26",
+      "description": "id_move: 26 op: SELR q: 2 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 11:02:32 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 26,\n  op: 'SELR',\n  sell_qty: 2,\n  what: \n   [ { id_mpcode: '45812@ARA#26', g_sizes: [Object] },\n     { id_mpcode: 'F0663-100@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5171082810d36a0000000002 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 24",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T04:00:35.875Z",
+      "link": "txt/move?obj=GLOB&id=24",
+      "description": "id_move: 24 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 06:00:35 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 24,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: '34118-06@ARA#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170c163cdc4df0000000004 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 22",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T03:55:57.399Z",
+      "link": "txt/move?obj=GLOB&id=22",
+      "description": "id_move: 22 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 05:55:57 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 22,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: 'T4902-100@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170c04dcdc4df0000000002 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 21",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T03:55:49.926Z",
+      "link": "txt/move?obj=GLOB&id=21",
+      "description": "id_move: 21 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 05:55:49 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 21,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: 'D8981-610@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170c045cdc4df0000000001 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 20",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T03:43:56.942Z",
+      "link": "txt/move?obj=GLOB&id=20",
+      "description": "id_move: 20 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 05:43:56 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 20,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: '31775@ARA#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170bd7d200e7b0000000002 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 18",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T03:43:08.616Z",
+      "link": "txt/move?obj=GLOB&id=18",
+      "description": "id_move: 18 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 05:43:08 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 18,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: '45812@ARA#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170bd4c200e7b0000000001 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 16",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T02:58:25.421Z",
+      "link": "txt/move?obj=GLOB&id=16",
+      "description": "id_move: 16 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 04:58:25 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 16,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: '29615@TAM#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170b2d11e36780000000001 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 14",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T02:22:26.309Z",
+      "link": "txt/move?obj=GLOB&id=14",
+      "description": "id_move: 14 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 04:22:26 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 14,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: '22104@CAP#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170aa6261be060000000004 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 12",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T02:11:51.224Z",
+      "link": "txt/move?obj=GLOB&id=12",
+      "description": "id_move: 12 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 04:11:51 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 12,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: 'D8981-610@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170a7e761be060000000003 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 10",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T02:10:54.864Z",
+      "link": "txt/move?obj=GLOB&id=10",
+      "description": "id_move: 10 op: SELR q: 1 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 04:10:54 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 10,\n  op: 'SELR',\n  sell_qty: 1,\n  what: [ { id_mpcode: 'D0872-650@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170a7ae61be060000000002 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 8",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-19T02:00:39.432Z",
+      "link": "txt/move?obj=GLOB&id=8",
+      "description": "id_move: 8 op: SELR q: 3 [GLOB] (+sold@objg)",
+      "content": "{ da: Fri Apr 19 2013 04:00:39 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 8,\n  op: 'SELR',\n  sell_qty: 3,\n  what: \n   [ { id_mpcode: '31753@ARA#26', g_sizes: [Object] },\n     { id_mpcode: 'D0872-650@BUG#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 5170a54761be060000000001 }"
+    },
+    {
+      "title": "Тип движения: Продажа (SELR) ID: 3",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-17T00:48:38.807Z",
+      "link": "txt/move?obj=GLOB&id=3",
+      "description": "id_move: 3 op: SELR q: 2 [GLOB] (+sold@objg)",
+      "content": "{ da: Wed Apr 17 2013 02:48:38 GMT+0200 (Финляндия (зима)),\n  obj: 'GLOB',\n  id_move: 3,\n  op: 'SELR',\n  sell_qty: 2,\n  what: [ { id_mpcode: '31753@ARA#26', g_sizes: [Object] } ],\n  proc: '+sold@objg',\n  _id: 516df166986ef6c0ab0000ea }"
+    }
+  ]
+}

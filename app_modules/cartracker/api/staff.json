@@ -1,0 +1,24 @@
+{
+"success": true,
+"type": "success",
+"count": 4,
+"data":
+[
+{
+"StaffID": 0,
+"FirstName":"Oleg",
+"LastName":"Verych",
+"Username":"olecom",
+"DOB": "1981-07-02T00:00:00Z",
+"Address1":"Some St.",
+"HireDate": "2012-03-03T00:00:00Z",
+"City":"Brest",
+"State":"Brest",
+"PostalCode":"225030",
+"Phone":"(29) 80 777 82",
+"UserRoles": [1,2],
+"Position": 1,
+"_Position":"Developer Local"
+}
+]
+}

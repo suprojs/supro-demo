@@ -1,0 +1,28 @@
+{
+"success": true,
+"type": "success",
+"count": 4,
+"data":
+[
+{
+"Month": "Jan",
+"TotalSold": 4,
+"TotalSales": 40000
+},
+{
+"Month": "Feb",
+"TotalSold": 4,
+"TotalSales": 20000
+},
+{
+"Month": "Mar",
+"TotalSold": 4,
+"TotalSales": 20000
+},
+{
+"Month": "Apr",
+"TotalSold": 1,
+"TotalSales": 1000
+}
+]
+}

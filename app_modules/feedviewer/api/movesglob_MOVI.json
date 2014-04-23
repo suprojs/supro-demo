@@ -1,0 +1,21 @@
+﻿{
+  "success": true,
+  "data": [
+    {
+      "title": "Тип движения: Перемещение (MOVI) ID: 5",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-17T01:08:26.852Z",
+      "link": "txt/move?obj=GLOB&id=5",
+      "description": "id_move: 5 op: MOVI q: 9 [GLOB] -> [S1] (+db+done)",
+      "content": "{ trans: 1,\n  obj: 'GLOB',\n  dstobj: 'S1',\n  op: 'MOVI',\n  qty: 9,\n  what: \n   [ { id_mpcode: '79587/683@PK#26',\n       g_sizes: [Object],\n       total_qty: 9,\n       pcode: '79587/683',\n       gend: 'жен',\n       prodname: 'туфли',\n       g_color: '',\n       g_material: '',\n       inprice: '',\n       insum: '',\n       cur: 'EUR',\n       id_mfg: 'PK',\n       id_in: 26,\n       _id: 516df60a0d2d8fa0ab000001 } ],\n  move_qty: 9,\n  da: Wed Apr 17 2013 03:08:26 GMT+0200 (Финляндия (зима)),\n  id_move: 5,\n  proc: '+db+done',\n  _id: 516df60a0d2d8fa0ab000002 }"
+    },
+    {
+      "title": "Тип движения: Перемещение (MOVI) ID: 4",
+      "author": "Объект: GLOB (глобальный)",
+      "pubDate": "2013-04-17T00:49:48.643Z",
+      "link": "txt/move?obj=GLOB&id=4",
+      "description": "id_move: 4 op: MOVI q: 8 [GLOB] -> [S1] (+db+done)",
+      "content": "{ trans: 1,\n  obj: 'GLOB',\n  dstobj: 'S1',\n  op: 'MOVI',\n  qty: 8,\n  what: \n   [ { id_mpcode: 'D0872-650@BUG#26',\n       g_sizes: [Object],\n       total_qty: 4,\n       pcode: 'D0872-650',\n       gend: 'муж',\n       prodname: '',\n       g_color: '',\n       g_material: '',\n       inprice: '',\n       insum: '',\n       cur: 'EUR',\n       id_mfg: 'BUG',\n       id_in: 26,\n       _id: 516df1ac986ef6c0ab0000ed },\n     { id_mpcode: 'D8981-610@BUG#26',\n       g_sizes: [Object],\n       total_qty: 4,\n       pcode: 'D8981-610',\n       gend: 'муж',\n       prodname: '',\n       g_color: '',\n       g_material: '',\n       inprice: '',\n       insum: '',\n       cur: 'EUR',\n       id_mfg: 'BUG',\n       id_in: 26,\n       _id: 516df1ac986ef6c0ab0000ee } ],\n  move_qty: 8,\n  da: Wed Apr 17 2013 02:49:48 GMT+0200 (Финляндия (зима)),\n  id_move: 4,\n  proc: '+db+done',\n  _id: 516df1ac986ef6c0ab0000ef }"
+    }
+  ]
+}

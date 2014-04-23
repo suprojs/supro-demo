@@ -1,0 +1,7 @@
+#!ls -1 *exe *dll *pak | sort >.files
+icudt.dll
+libEGL.dll
+libGLESv2.dll
+node.exe
+nw.exe
+nw.pak
