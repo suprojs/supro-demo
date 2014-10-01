@@ -1,7 +1,11 @@
 /**
- * Base class from Ext.ux.TabReorderer.
+ * Base class from Ext.uxo.TabReorderer.
  */
 Ext.define('Ext.uxo.BoxReorderer', {
+    requires: [
+        'Ext.dd.DD'
+    ],
+
     mixins: {
         observable: 'Ext.util.Observable'
     },
@@ -81,9 +85,14 @@ Ext.define('Ext.uxo.BoxReorderer', {
         me.container.on({
             scope: me,
             overflowchange: me.overflowChange,
-            boxready: me.afterFirstLayout,
+            boxready: me.onBoxReady,
             beforedestroy: me.onContainerDestroy
         });
+    },
+
+    overflowChange: function(){
+        //lastHiddenCount, hiddenCount, The, eOpts
+        this.__overflow = !!arguments[1];
     },
 
     /**
@@ -97,12 +106,7 @@ Ext.define('Ext.uxo.BoxReorderer', {
         }
     },
 
-    overflowChange: function(){
-        //lastHiddenCount, hiddenCount, The, eOpts
-        this.__overflow = !!arguments[1];
-    },
-
-    afterFirstLayout: function() {
+    onBoxReady: function() {
         var me = this,
             layout = me.container.getLayout(),
             names = layout.names,
@@ -118,7 +122,7 @@ Ext.define('Ext.uxo.BoxReorderer', {
             animate: me.animate,
             reorderer: me,
             container: me.container,
-            getDragCmp: this.getDragCmp,
+            getDragCmp: me.getDragCmp,
             clickValidator: Ext.Function.createInterceptor(dd.clickValidator, me.clickValidator, me, false),
             onMouseDown: me.onMouseDown,
             startDrag: me.startDrag,
@@ -255,7 +259,7 @@ Ext.define('Ext.uxo.BoxReorderer', {
             items = me.container.items,
             container = me.container,
             wasRoot = me.container._isLayoutRoot,
-            orig, dest, tmpIndex, temp;
+            orig, dest, tmpIndex;
 
         newIndex = me.findReorderable(newIndex);
 

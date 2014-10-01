@@ -1,10 +1,39 @@
-Ext.require([
-    'App.view.desktop.Status',
-    'App.view.desktop.Shortcuts'
-])
 
-Ext.define('App.view.Desktop',{
-    extend: 'Ext.Container',
+Ext.define('App.view.desktop.Shortcuts',{
+    extend: Ext.toolbar.Toolbar,
+    xtype: 'app-shortcuts',
+    style: 'background-color:white;background-image:none;'
+
+    //,stateId: 'dpss'
+    //,stateful: true
+
+    ,enableOverflow: true
+    ,defaults: {
+        reorderable: true
+    }
+    ,plugins : [ { xclass: 'Ext.uxo.BoxReorderer' } ]
+    ,initComponent: function shortcuts_dynamic_init(){
+        var me = this
+
+        me.items = Ext.Array.push([
+            {
+            xtype:'splitbutton',
+            text: 'Draggable / Reorderable Menu Button',
+            iconCls: 'ok',
+            menu: App.view.items_Shortcuts// app modules items
+            }
+            ]
+           ,App.view.items_Shortcuts
+        )
+
+        me.callParent(arguments)
+        delete App.view.items_Shortcuts
+    }
+})
+
+Ext.define('App.view.Desktop',
+{
+    extend: Ext.Container,
     id: 'desk',
     xtype: 'desktop'
    ,region: 'center'// border layout
@@ -13,8 +42,9 @@ Ext.define('App.view.Desktop',{
    ,items:[
         { xtype: 'app-shortcuts' }
     ]
-    ,initComponent: function init_Desktop(){
-        var me = this
+   ,initComponent:
+    function init_Desktop(){
+    var me = this
 
         me.on({
         'boxready':{
@@ -22,7 +52,7 @@ Ext.define('App.view.Desktop',{
             fn: initDesktopStatus
         }})
 
-        me.callParent(arguments)
+        me.callParent()
         return
 
         function initDesktopStatus(){
@@ -121,4 +151,5 @@ Ext.define('App.view.Desktop',{
             }
         }
     }
-})
+}
+)

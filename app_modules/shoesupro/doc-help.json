@@ -1,0 +1,77 @@
+[
+{
+    id: "dh-1",
+    title: "Работа в заказе и приходе по сезонам/коллекциям",
+    items:[
+    {
+        title: "Создание сезона",
+        description: "Показано как создать сезон/коллекцию. Что нужно указывать и т.д.",
+        icon: "/advanced-dataview.png",
+        name: "add_season",
+        url: "add_season"
+    }
+   ,{
+        title: "Внесение данных",
+        status: 'new',
+        description: "Изменение данных по коллекции: план/факт и иные показатели.",
+        icon: "/grid-edit.gif",
+        name: "edit_season",
+        url: "edit_season"
+    }
+   ,{
+        title: "Описания сообщений",
+        status: 'updated',
+        description: "Виды сообщений с описанием.",
+        icon: "/msg-box.png",
+        name: "edit_season",
+        url: "edit_season"
+    }
+   ,{
+        title: "Приходы",
+        status: 'experimental',
+        description: "Создание документов прихода.",
+        icon: "/grid-desc.gif",
+        name: "edit_season",
+        url: "edit_season"
+    }
+    ]
+}
+,
+{
+    id: "dh-2",
+    title: "Работа на объекте склад/магазин",
+    items:[
+    {
+        title: "Создание объекта",
+        description: "Показано как создать объект склад или магазин. Что нужно указывать и т.д.",
+        icon: "/advanced-dataview.png",
+        name: "add_object",
+        url: "add_object"
+    }
+   ,{
+        title: "Изменение объекта",
+        status: 'new',
+        description: "Изменение данных об объекте.",
+        icon: "/grid-edit.gif",
+        name: "edit_object",
+        url: "edit_object"
+    }
+   ,{
+        title: "Распределение моделей",
+        status: 'updated',
+        description: "Описан процесс распределния моделей между объектами (складами, магазинами).",
+        icon: "/msg-box.png",
+        name: "edit_object",
+        url: "edit_object"
+    }
+   ,{
+        title: "Остатки",
+        status: 'experimental',
+        description: "Работа с остатками моделей на объектах.",
+        icon: "/grid-desc.gif",
+        name: "edit_object",
+        url: "edit_object"
+    }
+    ]
+}
+]

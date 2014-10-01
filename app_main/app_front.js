@@ -88,7 +88,7 @@ function node_webkit(app, con){
     setup_tray(app.tray ,app.w)
 
     // long xhr pooling gets messages from backend
-    load_config(app) && http.get(
+    load_config(app) && http.get(//TODO: use `agent:false`
         "http://127.0.0.1:" + app.config.backend.ctl_port
         ,backend_is_running
     ).on('error'
@@ -97,6 +97,7 @@ function node_webkit(app, con){
     app.backend_check = check_backend
     app.backend_restart = restart
     app.backend_terminate = terminate
+    app.backend_shutdown = shutdown
     return
 
 function backend_is_running(res){
@@ -116,7 +117,7 @@ function backend_is_running(res){
 }
 
 function backend_ctl_errors(e){
-    if("ECONNRESET" == e.code){
+    if("ECONNRESET" == e.code){//TODO: use `agent:false` to remove this
         con.log('backend_ctl_errors: prev. backend connection has been reset, ignore')
         return
     }
@@ -316,6 +317,21 @@ function restart(){
     }
 }
 
+function shutdown(){
+    http.get({
+        hostname: '127.0.0.1',
+        port: app.config.backend.ctl_port,
+        path: '/cmd_exit',
+        agent: false
+    }, function(res){
+        App.sts(l10n.stsShutdown, l10n.stsStopSystem, l10n.stsOK)
+        //TODO check if still is up or grep for pid
+    }).on('error', function(e){
+        con.error("Shutdown error: " + e.message)
+        App.sts(l10n.stsShutdown, e.message, l10n.stsOK)
+    })
+}
+
 function terminate(){
     if(!app.config.backend.pid) return App.sts(
         l10n.stsCheck, l10n.stsKilledAlready, l10n.stsOK
@@ -439,7 +455,7 @@ function load_config(app){// loaded only by main process -- node-webkit
 
 function check_extjs_path(){// find local ExtJS in and above cwd './'
     var fs = require('fs'), pe = '../', d = '', i, p
-       ,ef = app.config.extjs.pathFile
+       ,ef = app.config.backend.extjs.pathFile
        ,extjs_path
 
     /* lookup extjs.txt first */

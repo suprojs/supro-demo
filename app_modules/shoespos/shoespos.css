@@ -1,0 +1,68 @@
+/* css from ExtJS chooser data-view example */
+
+.sku-info .sku-details{
+    font: 11px Arial, Helvetica, sans-serif;
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+}
+
+.sku-info .details-info b{
+    color: #555555;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.sku-browser{
+    background: white;
+    font: 11px Arial, Helvetica, sans-serif;
+}
+
+.sku-browser .thumb{
+    border:2px dashed #dddddd;
+    border-bottom:1px dashed #7F7F7F;
+}
+
+.sku-browser .thumb-wrap{
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 5px;
+}
+
+.sku-browser .thumb-wrap span{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.sku-browser .x-view-over{
+    border:1px solid #dddddd;
+    background-color: #efefef;
+    padding: 4px;
+}
+
+.sku-browser .x-item-selected{
+    background: #DFEDFF;
+    border: 1px solid #6593cf;
+    padding: 4px;
+}
+
+.sku-browser .x-item-selected .thumb{
+    background:transparent;
+}
+
+.sku-browser .x-item-selected span{
+    color:#1A4D8F;
+}
+
+.row-zero .x-grid-td{
+    background-color: #808080!important;
+}
+
+.cart-view-body pre{
+    margin: 0;
+}
+.cart-view-body{
+    padding: 7px;
+}

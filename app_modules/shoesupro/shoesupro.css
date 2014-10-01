@@ -1,0 +1,159 @@
+.icon-pkg{background:url(icons.png) no-repeat 0 0!important}
+.icon-ord{background:url(icons.png) no-repeat 0 -80px!important}
+.icon-ord-leaf{background:url(icons.png) no-repeat 0 -600px!important}
+.icon-ins{background:url(icons.png) no-repeat 0 -120px!important}
+.icon-ins-leaf{background:url(icons.png) no-repeat 0 -560px!important}
+.icon-rem{background:url(icons.png) no-repeat 0 0!important}
+.icon-sel{background:url(icons.png) no-repeat 0 -40px!important}
+.icon-sel-leaf{background:url(icons.png) no-repeat 0 -280px!important}
+.icon-cfg{background:url(icons.png) no-repeat 0 -160px!important}
+.icon-cfg-leaf{background:url(icons.png) no-repeat 0 -640px!important}
+.icon-distr{background:url(icons.png) no-repeat 0 -200px!important}
+.icon-copy{background:url(page_copy.png) no-repeat;}
+
+.doc-add{background:url(page_add.png)}
+.doc-del{background:url(page_delete.png)}
+.doc-edit{background:url(page_edit.png)}
+.doc-open{background:url(page_go.png)}
+.doc-history{background:url(clock_play.png)}
+.doc-export-xls{background:url(page_excel.png)}
+.doc-help{background:url(help.png)}
+
+.so-refresh { background-image:url(database_refresh.png)}
+.so-undo { background-image:url(arrow_undo.png)}
+.so-commit { background-image:url(accept.png)}
+.so-save { background-image:url(database_save.png)}
+.so-row-add { background-image:url(table_row_insert.png)}
+.so-row-del { background-image:url(table_row_delete.png)}
+.so-sizes-docs { padding-left:44px;background:url(docs.png) no-repeat;}
+.so-m { background:url(m.png) no-repeat;min-height:44px; min-width:44px;}
+.so-w { background:url(w.png) no-repeat;min-height:44px; min-width:44px;}
+
+.so-clmnhdr-filter{background:url(filter-icon.png) no-repeat;}
+.so-clmnhdr-filter-clear{
+    background:url(cross.gif) no-repeat!important;
+    border: 0 !important;
+    margin-top: 3px;
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.so-clmn-dates-add-edit{
+    padding: 6px 0 0 20px;
+    background:transparent url(calendar_add_edit.png) no-repeat;
+}
+.so-clmn-padd{
+    padding: 6px 0 0 20px;
+    background:transparent url(user_add_edit.png) no-repeat;
+}
+.so-clmn-add{
+    padding: 0 0 0 16px;
+    background:transparent url(calendar_add.png) no-repeat;
+}
+
+.so-season-num .x-form-item-label{
+    font-family: "Exo", sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #66ab16;
+    height: 25px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.so-season-num input{
+    font-family: "Exo", sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #66ab16;
+    height: 25px;
+}
+
+.so-season-img{
+    opacity: 0.7;
+    border: 1px solid #66ab16;
+    margin: 0 4px 2px 2px;
+    height: 82px;
+    width: 82px;
+}
+
+.so-season-img:hover {
+    opacity: 1;
+}
+
+img.selected{
+    opacity: 1!important;
+}
+
+.so-season-name input{
+   font-size: 24pt;
+    color: #66ab16;
+    height: 44px;
+ }
+
+/* Objects */
+
+.so-object-id .x-form-item-label{
+    font-family: "Exo", sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #FF7700;
+    height: 25px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.so-object-id input{
+    font-family: "Exo", sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #FF7700;
+    height: 25px;
+}
+
+.so-object-more input{
+   font-size: 24pt;
+    color: #FF7700;
+    height: 44px;
+ }
+
+/* Doc / Help */
+
+@font-face {
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Exo Regular'), local('Exo-Regular'), url(exo.woff2) format('woff');
+}
+
+.panel-docs{
+padding: 11px;
+}
+b.eg {
+    font-family: "Exo", sans-serif;
+    padding: 11px;
+    font-size: 2em;
+    color: #66ab16;
+    margin:0;
+}
+.dhthumb-list{padding:2px}
+.dhthumb-list dl {margin:0;}
+.dhthumb-list dd{cursor:pointer;float:left;height:100px;margin:10px;width:300px;zoom:1;line-height:1em}
+.dhthumb-list dd.over{background:#f5fde3 url(sample-over.gif) no-repeat}
+.dhthumb-list dd .dhthumb{float:left;height:90px;margin:5px 0 0 5px;width:120px}
+.dhthumb-list dd .dhthumb img{border:1px solid #ddd;max-height:88px;max-width:118px;margin:auto}
+.dhthumb-list dd div{float:left;margin-left:10px;width:160px}
+.dhthumb-list dd h4{color:#555;font-size:11px;font-weight:bold;margin-top:4px}
+.dhthumb-list dd h4 span.new{color:limegreen}
+.dhthumb-list dd h4 span.updated{color:blue}
+.dhthumb-list dd h4 span.exp{color:red}
+.dhthumb-list dd p{color:#777;font-size:13px}
+.dhthumb-list h2{border-bottom:2px solid #99bbe8;cursor:pointer;padding-top:6px;margin:0;}
+.dhthumb-list h2 div{background:transparent url(group-expand-sprite.gif) no-repeat 2px -45px;color:#3764a0;padding:4px 4px 4px 17px}
+.dhthumb-list .collapsed h2 div{background-position:2px 5px}
+.dhthumb-list .collapsed dl{display:none}
+
+
+
+
+

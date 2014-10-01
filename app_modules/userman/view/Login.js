@@ -1,10 +1,78 @@
-Ext.define('App.view.userman.Login',{
+/*
+ *  setup top bar
+ **/
+App.view.items_Bar = Ext.Array.push(App.view.items_Bar || [ ],[
+    '-'
+    ,{
+        iconCls: 'appbar-user-onli',// initial in backend by `App.um.wes()`
+        id: 'um.usts'
+       ,height: 28
+       ,tooltip: '', text: ''// filled by controller after auth
+       ,menu:{
+            xtype: 'menu',
+            plain: true,
+            items:{
+                xtype: 'buttongroup',
+                title: l10n.userStatusMenu,
+                columns: 1,
+                items:(
+    function mk_status_list(){
+    var s = new Array(5) ,l = [ 'onli', 'away', 'busy', 'offl' ]
+        for(var i = 0; i < 4; i++)  s[i] = {
+            text: l10n.um.userStatuses[l[i]]
+           ,itemId: l[i]
+           ,width: '100%'
+           //,icon: 'css/user-' +  l[i] + '.png'
+           ,iconCls: 'appbar-user-' + l[i]
+           ,handler: onItemClick
+        }
+        s[i] = {
+            text: l10n.um.users ,scale: 'large' ,iconCls: 'userman'
+           ,handler:
+            function open_userman_from_bar(){
+            var tb
+
+                if(!App.User.can['App.um.controller.Userman']) return App.denyMsg()
+
+                if((tb = Ext.getCmp('wm').items.getByKey('um.view.Userman'))){
+                    tb.toggle(true)
+                } else {
+                    App.create('um.controller.Userman')
+                }
+                return this.up('button').hideMenu()
+            }
+        }
+
+        return s
+
+        function onItemClick(item){
+            item.up('button').setIconCls(item.iconCls).hideMenu()
+            // send new 4-char status from 'appbar-user-????'
+            Ext.globalEvents.fireEventArgs('usts@UI',[ item.iconCls.slice(12)])
+        }
+    }
+                )()// buttongroup.items
+            }// menu.items
+        }// menu
+    }// tbutton
+    ,{
+        iconCls: 'appbar-shutdown'
+       ,height: 28 ,width: 28
+       ,tooltip: l10n.um.shutdown
+       ,handler: function(){
+            Ext.globalEvents.fireEventArgs('logout')
+        }
+    }
+])
+
+Ext.define('App.um.view.LoginWindow',{
     xtype: 'app-login',
-    extend: 'Ext.container.Container',
+    extend: Ext.container.Container,
     layout: 'fit',
-    singleton: true,
     constrain: true,
     /* draggable: true, by 'login-dd' in constructor() */
+    modal: false,
+    form: null, user: null, role: null, pass: null, auth: null,
     floating: true, shadow: false
     ,style: 'opacity: 0; background-color: #FFFFFF;'
           + 'padding: 14px; width: 354px; height: 313px;'
@@ -39,9 +107,10 @@ Ext.define('App.view.userman.Login',{
     }]
 
     ,id: 'login',
-    constructor: function constructorLogin(){
-        var me = this
-        me.callParent(arguments)
+    constructor: function constructorLogin(config){
+    var me = this
+
+        me.callParent([config])
         /* after initComponent()
          * Movable Container: make drag handler on top, not whole area
          */
@@ -49,19 +118,19 @@ Ext.define('App.view.userman.Login',{
         Ext.panel.Panel.prototype.initSimpleDraggable.call(me)
         me.draggable = me.header = null
  	},
-    destroy:function(){
+    destroy: function(){
         this.form.destroy()
         this.form = null
-        this.callParent(arguments)
+        this.callParent()
     },
     initComponent: function initLogin(){
-        var me = this
-           ,d = { duration: 1234, callback: null }
-           ,t = { duration: d.duration }
-           ,a = { duration: t.duration, height: 99, callback: null }
-           ,login
+    var me = this
+       ,d = { duration: 1234, callback: null }
+       ,t = { duration: d.duration }
+       ,a = { duration: t.duration, height: 99, callback: null }
+       ,login
 
-        me.callParent(arguments)
+        me.callParent()
         me.render(Ext.getBody())// 'cos `floating: true`
 
         // the fancy show up
@@ -85,7 +154,7 @@ Ext.define('App.view.userman.Login',{
         me.fadeOutProgress = function(cb){
             Ext.get('progress-bar').fadeOut(t)
             Ext.get('login-view').fadeIn(t)
-            a.height = 277
+            a.height = 297
             if(cb) a.callback = cb
             login.animate(a)
             a.callback = null
@@ -103,12 +172,12 @@ Ext.define('App.view.userman.Login',{
             hideLabels: true,
             cls: 'transparent',
             margin: '20px 0 0 0',
-            items: [{
+            items:[{
                 /* ExtJS 5 deprecated: 'Ext.form.field.Text'.triggers */
                 xtype: 'triggerfield',
                 triggerCls: 'login-shutdown',
                 name: 'user',
-                emptyText: l10n.um.loginUserBlank + ': demo+pass',
+                emptyText: l10n.um.loginUserBlank,
                 width: 177,
                 allowBlank: true,
                 enableKeyEvents: true,
@@ -126,7 +195,7 @@ Ext.define('App.view.userman.Login',{
                 editable: false,
                 displayField: 'role',
                 valueField: '=',
-                store: Ext.create('Ext.data.Store',{
+                store: Ext.create(Ext.data.Store,{
                     fields: [ 'role', '=' ]
                 }),
                 disabled: true
@@ -147,5 +216,10 @@ Ext.define('App.view.userman.Login',{
                 disabled: true
             }]
         })
+
+        me.user = me.form.down('field[name=user]')
+        me.role = me.form.down('field[name=role]')
+        me.pass = me.form.down('field[name=pass]')
+        me.auth = me.form.down('button[iconCls=ok]')
     }
 })

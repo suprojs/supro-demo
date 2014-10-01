@@ -48,7 +48,7 @@ Ext.define('CarTracker.controller.Security', {
         var me = this;
         // make remote request to check session
         Ext.Ajax.request({
-            url: (App.cfg.backend.url || '') + '/security/checklogin',// fix for `nw`
+            url: App.backendURL + '/security/checklogin',// fix for `nw`
             success: function( response, options ) {
                 // decode response
                 var result = Ext.decode( response.responseText );

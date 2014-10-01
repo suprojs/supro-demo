@@ -2,21 +2,7 @@
  * Main controller for all top-level application functionality
  */
 Ext.define('App.controller.Main',{
-    extend: 'App.controller.Base',
-    /*views:[
-        'Viewport',
-        //'Desktop'
-    ],
-    refs:[
-        //{
-          //  ref: 'Viewport',
-            //selector: '[xtype=viewport]'
-        //},
-        {
-            ref: 'Bar',
-            selector: '[xtype=app-bar]'
-        }
-    ],*/
+    extend: Ext.app.Controller,
     init: function controllerMainInit(){
         var me = this
            ,createViewport// function var for GC init
@@ -26,26 +12,10 @@ Ext.define('App.controller.Main',{
             global:{
                 createViewport: createViewport
                ,updateVersions: updateVersions
-               ,userStatus: handleUserStatus
-// messages:
-//auth ok: App.back.Connection.defaultHeaders['X-API'] = '1'
-//logout : delete App.back.Connection.defaultHeaders['X-API']
-            },
-            controller:{ },
-            component:{ },
-            store:{ }
+            }
         })
 
         return
-
-        function handleUserStatus(item){
-            App.sts(
-                'userstatus',
-                item.itemId,
-                l10n.stsOK,
-                new Date
-            )
-        }
 
         function updateVersions(){
         var el = Ext.get('versions'), _2 = { opacity: 0 }
@@ -75,20 +45,23 @@ Ext.define('App.controller.Main',{
         }
 
         function handleCreateViewport(){
+        var b
+
             if(App.cfg.extjs.fading){
+                b = Ext.getBody()
                 // very strange composition to get gears to fadeOut and viewport to fadeIn
-                var b = Ext.getBody()
                 b.fadeOut({duration:777 ,callback:
-                    function fadingViewport(){
-                        Ext.fly('startup').remove()
-                        b.show()
-                        Ext.create('App.view.Viewport')
-                        b.fadeIn({
-                            easing: 'easeIn',
-                            duration: 1024,
-                            callback: appReady
-                        })
-                    }
+                function fadingViewport(){
+                    Ext.fly('startup').remove()
+                    b.show()
+                    Ext.create('App.view.Viewport')
+                    b.fadeIn({
+                        easing: 'easeIn',
+                        duration: 1024,
+                        callback: appReady
+                    })
+                    b = null
+                }
                 })
             } else {
                 Ext.fly('startup').remove()
@@ -98,22 +71,17 @@ Ext.define('App.controller.Main',{
         }
 
         function appReady(){
-            /*dynamic controller for dynamic models
-             * this doesn't work due to curved loading: Controller first, not Model.
-               application.config: {
-                    models: [ 'Base', 'BaseR', 'Status' ],
-                    stores: [ 'Status' ],
-                    controllers: [ 'Main' ]
-                }
-             **/
-            //me.viewport = Ext.ComponentQuery.query('viewport')[0]
+           /* dynamic controller for dynamic models
+            * due to reversed loading (Controller first, not Model)
+            * this doesn't work:
+              application.config: {
+                   models: [ 'Base', 'BaseR', 'Status' ],
+                   stores: [ 'Status' ],
+                   controllers: [ 'Main' ]
+               }
+            **/
             me.suspendEvent('createViewport')
             if(createViewport) createViewport = null// GC init
-
-            if(App.cfg.extjs.load.require.length){
-                Ext.require(App.cfg.extjs.load.require)
-                App.cfg.extjs.load = null// GC loading is done
-            }
 
             App.sts(// add first System Status message
                 App.cfg.backend.op,
@@ -125,5 +93,5 @@ Ext.define('App.controller.Main',{
             delete App.cfg.backend.msg
             delete App.cfg.backend.time
         }
-    }// init()
+    }
 })

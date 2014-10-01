@@ -1,7 +1,7 @@
 Ext.require('App.store.Status')
 
 Ext.define('App.view.desktop.StatusGrid',{
-    extend: 'Ext.grid.Panel',
+    extend: Ext.grid.Panel,
     singleton: true,
     title: l10n.stsSystem,
     /* config for stretching `grid` to fit container correctly: */
@@ -48,7 +48,7 @@ Ext.define('App.view.desktop.StatusGrid',{
 
 Ext.define('App.view.desktop.Status',{
     xtype: 'app-status-bubble',
-    extend: 'Ext.container.Container',
+    extend: Ext.container.Container,
     layout: 'hbox',
     align: 'stretch',
     width: 7, height: 7,// it is being resized and animated, when created
@@ -67,7 +67,7 @@ Ext.define('App.view.desktop.Status',{
             width: '100%'
         }
         ,items:[
-            Ext.create('Ext.Img',{
+            Ext.create(Ext.Img,{
                 src: 'css/extdeskrun.gif',
                 style: 'cursor:move;',
                 height: 61// fix first layout
@@ -82,10 +82,10 @@ Ext.define('App.view.desktop.Status',{
 'connectjs:,' + App.cfg.backend.versions.connectjs +
 'node-webkit:,'+ App.cfg.backend.versions.nw : '')
             ).replace(/\n/g,'</b><br>').replace(/,/g, '<br><b>') +
-'</div><br><a href="' + (
+'</div><br><a target="blank" href="' + (
     App.cfg.backend.url ?
         App.cfg.backend.url + '">HTTP Remote Application' :
-        'http://docs.sencha.com/extjs/4.2.1/' + '" target="blank">ExtJS Doc'
+        '/extjs/docs/index.html' + '">ExtJS Doc'
     ) +
 '</a>'
         }

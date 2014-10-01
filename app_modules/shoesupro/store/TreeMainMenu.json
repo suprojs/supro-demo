@@ -1,0 +1,145 @@
+{
+children:[
+{
+    "text": '? ' + l10n.so.seasons,
+    leaf: true
+},
+{
+    "text": l10n.so.orders,
+    "id": "ord",
+    "iconCls": "icon-ord",
+    "children": [{
+        "text": l10n.so.no + "31",
+        "id": "n31",
+        "iconCls": "icon-ord-leaf",
+        "leaf": true
+    },{
+        "text": l10n.so.no + "30",
+        "id": "n30",
+        "iconCls": "icon-ord-leaf",
+        "leaf": true
+    },{
+        "text": l10n.so.no + "29",
+        "id": "n29",
+        "iconCls": "icon-ord-leaf",
+        "leaf": true
+    }]
+},
+{
+    "text": l10n.so.in_stock,
+    "iconCls": "icon-ins",
+    "id": "inc",
+    "children": [{
+        "text": "#31",
+        "id": "i31",
+        "iconCls": "icon-ins-leaf",
+        //"checked": true,
+        "leaf": true
+    },{
+        "text": "#30",
+        "id": "i30",
+        "iconCls": "icon-ins-leaf",
+        //"checked": true,
+        "leaf": true
+    },{
+        "text": "#29",
+        "id": "i29",
+        "iconCls": "icon-ins-leaf",
+        //"checked": true,
+        "leaf": true
+    }]
+},
+{
+    "text": '? ' + l10n.so.objects,
+    leaf: true
+},
+{
+    "text": l10n.so.objects,
+    "iconCls": "icon-rem",
+    "id": "rem",
+    "children": [{
+        "text": "GLOBal",
+        "id": "rGLOB",
+        "iconCls": "icon-rem",
+        "leaf": true,
+        "checked": true
+    },{
+        "text": "Магазин #1",
+        "id": "rS1",
+        "iconCls": "icon-rem",
+        "leaf": true,
+        "checked": false
+    },{
+        "text": "Магазин #1",
+        "id": "rS2",
+        "iconCls": "icon-rem",
+        "leaf": true,
+        "checked": false
+    },{
+        "text": "Склад основной",
+        "id": "rW2",
+        "iconCls": "icon-rem",
+        "leaf": true,
+        "checked": false
+    }]
+},
+/*{
+    "text": l10n.so.sel,
+    "iconCls": "icon-sel",
+    "id": "sel",
+    "children": [{
+        "text": "GLOBal",
+        "id": "sGLOB",
+        "iconCls": "icon-sel-leaf",
+        "leaf": true,
+        "checked": true
+    },{
+        "text": "Shop #1",
+        "id": "sS1",
+        "iconCls": "icon-sel-leaf",
+        "leaf": true,
+        "checked": false
+    },{
+        "text": "Shop #2",
+        "id": "sS2",
+        "iconCls": "icon-sel-leaf",
+        "leaf": true,
+        "checked": false
+    }]
+},*/
+{
+    "text": l10n.so.reports,
+    "id": "reports",
+    "children": [{
+        "text": "Report1",
+        "id": "r1",
+        "leaf": true
+    }]
+},
+{
+    "text": l10n.so.other,
+    leaf: true
+},
+{
+    "text": l10n.so.lists,
+    "iconCls": "icon-cfg",
+    "id": "lists",
+    "children": [{
+        "text": "dictCurr",
+        "id": "dCur",
+        "iconCls": "icon-cfg-leaf",
+        "leaf": true,
+    },{
+        "text": "dictManufacturers",
+        "id": "dMnf",
+        "iconCls": "icon-cfg-leaf",
+        "leaf": true,
+    },{
+        "text": "dictModels",
+        "id": "dMdl",
+        "iconCls": "icon-cfg-leaf",
+        "leaf": true,
+    }]
+}
+]
+}

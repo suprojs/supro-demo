@@ -1,9 +1,11 @@
 l10n = { lang: 'en',
     app: 'SUPRO Demo'
+    ,'': "empty"
     ,welcome: 'SUPRO welcomes: application development'
     ,reload: 'reload',
 
     loading: 'Loading...'
+    ,oops_rcif: 'OOPS: restricted code in frontend'
     ,errload: 'Loading failed due to errors.'
     ,errload_no_app:
         'Installation error! File not found: "app_front.js".\n' +
@@ -19,6 +21,10 @@ l10n = { lang: 'en',
 'Error! Backend of the system has started but there is no HTTP access to it!\n' +
 'Possibly firewall or antivirus is blocking TCP/IP.\n\n' +
 "Assistance is needed: system administrator's or developer's."
+    ,errun_title: 'ERROR in program execution'
+    ,errun_file: 'File: '
+    ,errun_stack: 'Error and call stack: '
+    ,err_crud_proxy: 'CRUD Proxy (or Reader or Model) exception!'
     ,tray:{
         title: 'SUPRO'
         ,winvis: 'SUPRO window is visible'
@@ -67,6 +73,7 @@ name_example
     ,stsCheck: 'CHECK main `nodejs`'
     ,stsRestarting: '(2 sec.) starting new `nodejs`'
     ,stsKilling: 'KILL/TERMINATE `nodejs` (hangs)'
+    ,stsShutdown: 'SHUTDOWN main `node.js`'
     ,stsBackendPid: function(pid){
         return '' + pid + ' - PID of the main nodejs process of the system'
     }
@@ -76,6 +83,7 @@ name_example
     ,stsClean: 'Clear'
     ,stsEcho: 'Request-check'
     ,stsRestart: 'Restart'
+    ,stsStopSystem: 'Shutdown the system'
     ,stsKill: 'Terminate/kill process (hangs)'
     ,stsKilled: 'main process is "killed"'
     ,stsKilledAlready: 'main process is already "dead"'
@@ -84,16 +92,46 @@ name_example
     ,stsMsg: 'Messages: '
     ,stsMarkRead: 'Mark all as read'
 
+    ,btnAdd: 'Add'
+    ,btnCreate: 'Create'
+    ,btnEdit: 'Edit'
+    ,btnCancel: 'Cancel'
+
+    ,copyCtrlC: 'CTRL+C copies cell'
+    ,selectAll: 'Select all rows'
+
+    ,formNoChange: 'No changes'
+    ,formNoChangeMsg: 'The Form has no changes!'
+
     ,time: 'Time'
     ,operation: 'Operation'
     ,description: 'Description'
     ,result: 'Result'
 
-    ,shutdown: 'Exit or block'
-    ,connection: 'Network connection state'
-    ,userStatus: 'User status'
-    ,userStatusMenu: 'User<br/>status list'
-    ,userStatuses: { 'online': 'Online','away': 'Away','busy':'Busy','offline':'Offline' }
+    /* DATA EXCHANGE */
+
+    // fronend error messages
+    ,emptyTextGrid: '--== No data ==--'
+    ,err_crud_proxy: 'Request failed. Fatal. Call for developer.'
+
+    // backend error codes
+    ,'!session': 'Session has ended. New login required. Unsaved data move to MS Excel.'
+    ,'!handler': 'No such handler in backend logic.'
+    ,'!auth': 'Access denied.'
+    ,'!db': 'Data Base is unavailable. Fatal. Call for developer.'
+    ,'!such_subapi': 'No such sub API.'
+
+    ,'!transs': 'trans_start_fail'
+    ,'!transe': 'trans_end_fail'
+    ,'!hsts': 'failed history start'
+    ,'!hste': 'failed history end'
+    ,'error index': 'Duplicate SKU insert or other Index error'
+    ,MongoError: 'FATAL Mongo Error. Call for developer.'
+    ,TypeError: 'Programming error. Call for developer.'
+    ,ReferenceError: 'Programming error. Call for developer.'
+    ,Error: 'Programming error. Call for developer.'
+    // backend applicaiton errors (non fatal or wrong input)
+    //,'~exists': 'Already exists.'
 
     ,um: null // user manager
 }

@@ -20,7 +20,7 @@ Ext.define('CarTracker.store.Base', {
             remoteGroup: true,
             proxy: {
                 type: 'baserest',
-                url: (App.cfg.backend.url || '') + me.restPath// fix `nw`
+                url: App.backendURL + me.restPath// fix `nw`
             }
         }, cfg)]);
     }

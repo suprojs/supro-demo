@@ -5,26 +5,26 @@ CarTracker.LoggedInUser = { inRole: function(){ return true } }
 App.view.items_Shortcuts = Ext.Array.push(App.view.items_Shortcuts || [], [
 {
     text:
-'<img height="68" width="128" src="' + (App.cfg.backend.url || '') +
+'<img height="64" width="128" src="' + App.backendURL +
 '/resources/images/car.png"/>' +
 '<br/>existdissolve.com<br/>' +
 'CarTracker<br/>'
-   ,height:110 ,minWidth:92
-   ,tooltip: 'existdissolve.com "ExtJS 4.2. App Walkthrough"</a>'
-   ,handler: function open_CarTracker(){
+   ,height: 110
+   ,tooltip: 'existdissolve.com "ExtJS 4.2. App Walkthrough"'
+   ,handler: function open_CarTracker(btn){
         if(CarTracker.getApplication){
             var v = Ext.getCmp('CarTracker.view')
             v && v.show()// multiple launch but one app
         } else {
-            Ext.application('CarTracker.app.Application')
+            App.create('CarTracker.app.Application', btn)
         }
     }
 }
 ])
 
-Ext.Loader.setPath('CarTracker', (App.cfg.backend.url || '') + '/CarTracker')
+Ext.Loader.setPath('CarTracker', App.backendURL + '/CarTracker')
+Ext.Loader.setPath('Ext.ux.grid.plugin', App.backendURL + '/CarTracker/ux/grid/plugin/')
 
-// end of app module customization
 /**
  * @class CarTracker
  * @singleton
@@ -34,8 +34,9 @@ Ext.util.Format.yesNo = function( v ) {
     return v ? 'Yes' : 'No';
 };
 
-//Ext.application({
-Ext.define('CarTracker.app.Application', {
+//Ext.application({                         // default if SPA
+//Ext.define('CarTracker.app.Application',{ // slow initial loading
+App.cfg['CarTracker.app.Application'] = {   // fast init
     extend: 'Ext.app.Application',
     appFolder: Ext.Loader.getPath('CarTracker'),
     name: 'CarTracker',
@@ -64,7 +65,7 @@ Ext.define('CarTracker.app.Application', {
     launch: function( args ) {
         // "this" = Ext.app.Application
         var me = this;
-        
+
         Ext.globalEvents.fireEvent( 'beforeviewportrender' );
     }
-});
+}

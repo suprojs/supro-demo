@@ -10,6 +10,7 @@ Ext.define('CarTracker.view.option.List', {
         'Ext.grid.column.Boolean'
     ],
     extraColumns: null,
+    multiSelect: true,
     initComponent: function() {
         var me = this,
             columns = [
@@ -48,6 +49,7 @@ Ext.define('CarTracker.view.option.List', {
                     ptype: 'rowediting',
                     clicksToEdit: 2
                 }
+                ,Ext.create('Ext.ux.grid.plugin.DragSelector', {}),
             ],
             columns: {
                 defaults: {},
@@ -78,5 +80,5 @@ Ext.define('CarTracker.view.option.List', {
             ]
         });
         me.callParent( arguments );
-    } 
+    }
 });

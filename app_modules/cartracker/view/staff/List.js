@@ -11,9 +11,11 @@ Ext.define('CarTracker.view.staff.List', {
     title: 'Manage Staff Members',
     iconCls: 'icon_user',
     store: 'Staff',
+    
     initComponent: function() {
         var me = this;
         Ext.applyIf(me, {
+            plugins: [ Ext.create('Ext.ux.grid.plugin.DragSelector', {}) ],
             columns: {
                 defaults: {},
                 items: [

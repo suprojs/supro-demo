@@ -1,26 +1,13 @@
 module.exports = { /* API setup */
-    /* methods */
-    app: null,// connect()
     connect: null,// connectjs
-    cfg: null,
-    con: null,// console
-    _log: null,
-    _err: null,
-
-    ipt: require('util').inspect,
-
-    /* data
-    users: users,
-    roles: roles */
-
-    set_api: function set_api(cfg, con, _log, _err){
-        var api = this
-
-        api.cfg = cfg
-        api.con = con
-        api._log = _log
-        api._err = _err
-
-        return this
-    }
+    app: null,// connect()
+    mwL10n: null,// `l10n` files middleware factory for app modules
+    set_mwConfig: null,// set another middleware for serving config
+    getModules: null,// get ref from module loader
+    /* modules sub api (can be removed if no such app module used)
+     * performance hint: placeholders tell V8 about future structure
+     **/
+    db: null,// mongodb if `supromongod` is configured
+    um: null,// access point into `userman`
+    wes: null// userman: waiting events (from backend to UI)
 }

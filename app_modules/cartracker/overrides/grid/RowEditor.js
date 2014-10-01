@@ -1,7 +1,7 @@
 /**
  * Override for {@link Ext.grid.RowEditor}. Fixes lack of change event on editor fields
  */
-Ext.define('overrides.grid.RowEditor', {
+Ext.define('CarTracker.overrides.grid.RowEditor', {
     override: 'Ext.grid.RowEditor',
     addFieldsForColumn: function(column, initial) {
         var me = this,

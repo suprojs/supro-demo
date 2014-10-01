@@ -2,6 +2,7 @@
  * @class CarTracker.ux.form.field.plugin.ClearTrigger
  * @extends Ext.AbstractPlugin
  * Plugin that adds the ability to clean an input field with a trigger class
+ * Author: existdissolve.com
  * @ptype cleartrigger
  */
  Ext.define('CarTracker.ux.form.field.plugin.ClearTrigger', {

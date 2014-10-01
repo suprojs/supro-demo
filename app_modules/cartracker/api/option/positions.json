@@ -1,10 +1,19 @@
 {
 "success": true,
-"count": 3,
+"count": 11,
 "data":
 [
-{ "PositionID": 1, "LongName":"Developer Local", "ShortName": "DevL" },
-{ "PositionID": 2, "LongName":"Developer Remote", "ShortName": "DevR"  },
-{ "PositionID": 3, "LongName":"Administrator", "ShortName": "Adm"  }
+{ "PositionID": 1, "LongName":"Склад Брака", "ShortName": "DevL" },
+{ "PositionID": 2, "LongName":"Гиппо", "ShortName": "DevR"  },
+{ "PositionID": 3, "LongName":"Бигз", "ShortName": "Adm"  },
+{ "PositionID": 4, "LongName":"Титан", "ShortName": "DevL" },
+{ "PositionID": 5, "LongName":"СТ", "ShortName": "DevR"  },
+{ "PositionID": 6, "LongName":"Сер", "ShortName": "Adm"  },
+{ "PositionID": 7, "LongName":"Люда", "ShortName": "DevL" },
+{ "PositionID": 8, "LongName":"Арена", "ShortName": "DevR"  },
+{ "PositionID": 9, "LongName":"Витебск", "ShortName": "Adm"  },
+{ "PositionID": 10, "LongName":"Победа", "ShortName": "DevL" },
+{ "PositionID": 11, "LongName":"Administrator", "ShortName": "Adm"  }
 ]
 }
+
