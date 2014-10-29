@@ -303,11 +303,11 @@ log('!deny cmp:', perm)
                 ret.success = u && u.pass === data[2] && !!(
                               r &&~u.roles.indexOf(r))
 
-                if('developer.local' === r &&
-                   '127.0.0.1' !== req.socket.remoteAddress){
-                    ret.success = false//security: don't allow remote access
-                    ret.err = '!access'
-                }
+                //if('developer.local' === r &&
+                //   '127.0.0.1' !== req.socket.remoteAddress){
+                //    ret.success = false//security: don't allow remote access
+                //    ret.err = '!access'
+                //}
 
                 if(ret.success){
                     if(req.session.fail){
