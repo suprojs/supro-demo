@@ -3,7 +3,8 @@
  * Request parameter (in `req.txt`) is user's status: 'online', 'away', etc.
  *
  * LIMITS: only one window/tab/context is suported per one session
- *
+ * `ev`: 'errdev@um', 'initwes@um', 'Usts@um', 'usts@um', 'uncaught@global'
+ * external `ev`: 'wes4store'
  **/
 
 module.exports = wait_events
@@ -24,6 +25,12 @@ var Waits = {// pool of waiting server events `req`uests from UI
  **/
     }
    ,num = 0// number of sessions
+   ,global_pushUncaughtException = global.pushUncaughtException
+
+    global.pushUncaughtException = function wes_pushUncaughtException(that){
+        global_pushUncaughtException(that)
+        broadcast('uncaught@global', 'check: "/uncaughtExceptions"')
+    }
 
     return {
          mwPutWaitEvents: mwPutWaitEvents
@@ -31,10 +38,11 @@ var Waits = {// pool of waiting server events `req`uests from UI
         ,list_ids: list_ids
         ,is_online: is_online
         ,reset_online: reset_online
-        ,broadcast: broadcast
-        //,singlecast: singlecast
         ,init: init
         ,cleanup: cleanup
+        // communication sub api
+        ,broadcast: broadcast
+        //,singlecast: singlecast
     }
 
     function init(req){
@@ -218,16 +226,23 @@ var Waits = {// pool of waiting server events `req`uests from UI
         wes.queue.push(ev)
         if(!wes.timer){
             wes.timer = setTimeout(
-                function wait_queue_flush(){
-                    if(wes.res){// flush if next `res` is there
-                        wes.timer = 00
-                        wes.res.json(wes.queue.splice(0))// clean object in events
-                    } else {// wait for `res` to be ready a bit later
-                        setTimeout(wait_queue_flush, 512)
+            function wait_queue_flush(){
+            var i, e
+
+                if(wes.res){// flush if next `res` is there
+                    wes.timer = 0
+                    wes.res.json(wes.queue)
+                    for(i = 0; i < wes.queue.length; ++i){
+                        if(Array.isArray(e = wes.queue[i].json.data)){
+                            e.splice(0)// clean data in global/multiplexed events
+                        }
                     }
+                    wes.queue.splice(0)// clean object in events
+                } else {// wait for `res` to be ready a bit later
+                    setTimeout(wait_queue_flush, 512)
                 }
-                ,512
-            )
+            }
+            ,512)
         }
     }
 }

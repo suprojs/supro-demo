@@ -38,8 +38,7 @@ var path, extjs, t
 
         clearInterval(extjs)
         app.extjs_helper = css_load
-        path = Ext.Loader.getPath('Ext')//ExtJS 5: config is OK, remove this
-        extjs = path + '/../locale/ext-lang-' + l10n.lang + '.js'
+        extjs = path + 'locale/ext-lang-' + l10n.lang + '.js'
         Ext.Loader.loadScript({
             url: extjs,
             onError: function fail_load_locale(){
@@ -51,12 +50,9 @@ var path, extjs, t
             'ExtJS locale: ' + l10n.lang + '\n ' +
             'ExtJS is at <' + path + '>'
         )
-        Ext.Loader.setPath('Ext.ux', path + '/../examples/ux')
+        Ext.Loader.setPath('Ext.ux', path + 'examples/ux')
 
         if(app.config.backend.url){// `nw` context`
-            app.config.extjs.appFolder = ('http://127.0.0.1:' +
-                app.config.backend.job_port
-            )
            /* patch ExtJS Loader to work from "file://" in `node-webkit`
             * also `debugSourceURL` removed in `ext-all-debug.js#loadScriptFile()`
             * it crushes `eval` there it's critical (plus there are more patches)
@@ -187,10 +183,9 @@ function sub_app_create(ns, btn, cfg){
 /*
  * There are classes with run time development reloading for
  * - controllers (e.g. 'App.userman.Chat'),
- * - slow view:
- *     Ext.define('App.view.Chat',...)
  * - and fast view definitions (config only):
- *     App.cfg['App.view.Userman'] = { ... }
+ *     App.cfg['CarTracker.app.Application'] = { // fast init
+ *     }
  **/
     btn && (app.btn = btn).setLoading(true)
 
@@ -202,7 +197,7 @@ function sub_app_create(ns, btn, cfg){
                 run_module()
                 return
             }
-            Ext.syncRequire(ns)
+            Ext.syncRequire(ns)// initial loading
         }
     }
 
@@ -215,7 +210,7 @@ function sub_app_create(ns, btn, cfg){
     // define a Class *only* once
     // use `override` to redefine it (e.g. when developing) in run time
     if(App.cfg[ns]){
-        btn || (App.cfg[ns].override = ns)// no button -- development reload
+        btn || Ext.undefine(ns)// no button -- development reload
         Ext.define(ns, App.cfg[ns], run_module)
         App.cfg[ns] = null// GC
         return
@@ -269,8 +264,7 @@ var url, url_l10n
         url: url_l10n
        ,onLoad: function l10n_reloaded(){
             Ext.Loader.removeScriptElement(url_l10n)
-            url = App.backendURL + '/' +
-                    panel.wmId.replace(/[.]/g, '/') + '.js'
+            url = App.backendURL + '/' + panel.wmId.replace(/[.]/g, '/') + '.js'
             Ext.Loader.loadScript({
                 url: url
                ,onLoad: view_loaded
@@ -282,18 +276,25 @@ var url, url_l10n
 
     function view_loaded(){
         Ext.Loader.removeScriptElement(url)
+
+        if((url_l10n = App.cfg['App.' + panel.wmId]) && url_l10n.__noctl){
+            ctl_not_loaded()
+            return
+        }
         Ext.Loader.loadScript({
             url: url = url.replace(/[/]view[/]/, '/controller/')
-           ,onLoad: function ctl_loaded(){
-                Ext.Loader.removeScriptElement(url)
-                App.create(panel.wmId.replace(/view[.]/, 'controller.'))
-            }
-           ,onError: function ctl_not_loaded(){
-                Ext.Loader.removeScriptElement(url)
-                App.create(panel.wmId, null,{
-                    constrainTo: Ext.getCmp('desk').getEl()
-                })
-            }
+           ,onLoad: ctl_loaded
+           ,onError: ctl_not_loaded
+        })
+    }
+    function ctl_loaded(){
+        Ext.Loader.removeScriptElement(url)
+        App.create(panel.wmId.replace(/view[.]/, 'controller.'))
+    }
+    function ctl_not_loaded(){
+        Ext.Loader.removeScriptElement(url)
+        App.create(panel.wmId, null,{
+            constrainTo: Ext.getCmp('desk').getEl()
         })
     }
 }

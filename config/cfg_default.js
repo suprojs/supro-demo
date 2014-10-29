@@ -1,3 +1,7 @@
+// local vars to share in hash (kind of macro preprocessing)
+var OBJ = 'GLOB'// differentiate instances of distributed SUPRO
+var DB  = 'supro_' + OBJ
+// global config
 config = {
 /* NOTE: this is not JSON just JavaScript
  *       idea is taken from github.com/louischatriot/mongo-edit
@@ -11,7 +15,7 @@ config = {
 
         supromongod:{//'mongodb://' + process.env.MONGODS + process.env.MONGO_DBNAME
             url: 'mongodb://127.0.0.1:27027/'
-           ,db_name: 'supro_GLOB'
+           ,db_name: DB
            ,options:{// you know what you are doing here!
                bufferMaxEntries: 0,
                forceServerObjectId: true,
@@ -79,7 +83,7 @@ config = {
         file: 'app_main/app_back.js',
         job_port: 3007,
         ctl_port: 3008,
-        ctl_on_close: null,// set app module handlers for ctl close/app exit
+        ctl_on_done: null,// set app module handlers for ctl close/app exit
         init_timeout: 123
        ,extjs:{
             pathFile: 'extjs.txt'// search this file (extjs.txt)

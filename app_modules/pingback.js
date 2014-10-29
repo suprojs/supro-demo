@@ -15,11 +15,11 @@ var ui, App_backend_JS = 'App.backend.JS'// UI component
 
         if(req.session && req.session.can && req.session.can[App_backend_JS]){
             if(req.txt) try {
-                new Function(
+                /*new Function(
                    'ret, api, req, res, next', req.txt
                 )(
                     ret, api, req, res, next
-                )
+                )*/
                 if(ret.async){
                     return null// user code must do all further response processing
                 }

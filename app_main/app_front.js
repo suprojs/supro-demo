@@ -164,15 +164,13 @@ function spawn_backend(app, restart){
     log = app.config.log +
           app.config.backend.file.replace(/[\\/]/g ,'_') + '.log'
 
+    app.process.env.NODEJS_CONFIG = JSON.stringify(app.config)
     backend = app.c_p.spawn(
         'node'
         ,[ app.config.backend.file ]
         ,{
              detached: true
-            ,env: {
-                NODEJS_CONFIG: JSON.stringify(app.config)
-            }
-            ,stdio: [ 'ignore'
+            ,stdio:[ 'ignore'
                 ,fs.openSync(log ,'a+')
                 ,fs.openSync(log ,'a+')
             ]
@@ -349,11 +347,10 @@ function terminate(){
         res.on('data'
        ,function(chunk){
             var pid  = chunk.slice(7).replace(/\n[\s\S]*/g, '')// remove '? pid: '
-               ,path = app.process.cwd()
 
-            path += path.indexOf('/') ? '/' : '\\'// add OS-specific slash
-            if(pid != app.config.backend.pid)
-                con.warn('current pid != app.config.backend.pid; kill anyway!'),
+            if(pid != app.config.backend.pid){
+                con.warn('current pid != app.config.backend.pid; kill anyway!')
+            }
             app.config.backend.pid = pid
             app.c_p.exec(
                'wscript terminate.wsf ' + pid,
@@ -429,15 +426,16 @@ function load_config(app){// loaded only by main process -- node-webkit
         cfg = 'config/cfg_default.js'
 
     try {
-        app.config = (
-            new Function('var config ; return ' +
-                          fs.readFileSync(cfg ,'utf8'))
-        )()
+        app.config = (new Function(
+        'var config;/* one global variable, any local can be in read file */\n' +
+        fs.readFileSync(cfg ,'utf8') +
+        '; return config ;'
+        ))()
     } catch(ex){
-        con.error('ERROR load_config:' + (cfg = (' ' + cfg + '\n' + ex)))
+        con.error('ERROR load_config:' + (cfg = (' ' + cfg + '\n' + ex.stack)))
         cfg = l10n.errload_config_read + cfg
-        doc.write(cfg)
         app.w.window.alert(cfg)
+        doc.write(cfg.replace(/\n/g, '<br>'))
         return false
     }
 

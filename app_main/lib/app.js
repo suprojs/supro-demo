@@ -5,7 +5,7 @@
 
 module.exports = runApp
 
-function runApp(cfg){
+function runApp(cfg, uncaughtExceptions){
 var api      = require('./api.js')
    ,sendFile = require('./middleware/sendFile.js')
    ,_404     = require('./middleware/404.js')
@@ -13,6 +13,11 @@ var api      = require('./api.js')
    ,app      = api.app = connect()
    ,mwConfig, Modules
 
+    // provide api to assign final handlers
+    if(cfg.backend.ctl_on_done){
+        api.ctl_on_done = cfg.backend.ctl_on_done
+        cfg.backend.ctl_on_done = null
+    }
     /* `l10n` files middleware factory for app modules */
     api.mwL10n = require('./middleware/l10n.js')
     /* UI/ExtJS per-user/role config changer */
@@ -37,11 +42,11 @@ var api      = require('./api.js')
     app.use('/app_front.js' , sendFile('app_front_http.js'))// switch to web UI
 
     require('../../app_modules/')(cfg, api)
-    cfg.backend.ctl_on_close(/* finish on close setup, deny further additions */)
 
     /* backend static files for HTTP users */
     app.use('/', connect['static'](__dirname + '/../', { index: 'app.htm' }))
 
+    app.use('/uncaughtExceptions', mwUncaughtExceptions)
     app.use('/test.js', sendFile('test.js'))
     /* final stage: error path */
     app.use(require('./middleware/errorHandler.js'))
@@ -89,6 +94,13 @@ var api      = require('./api.js')
 
     function use_mwConfig(req, res, next){
         return mwConfig(req, res, next)
+    }
+
+    function mwUncaughtExceptions(req, res, next){
+        if(req.json){
+            return res.json(uncaughtExceptions)
+        }
+        return res.txt(uncaughtExceptions.join('\n====\n'))
     }
 
     function remote_extjs_cfg(){

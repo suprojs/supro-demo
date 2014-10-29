@@ -63,7 +63,7 @@ var defaults
     }
 
     function backend_events(o, success, res){
-    var data, i
+    var data, i, done
 
         if(success){
             // reset error state if any
@@ -95,8 +95,25 @@ var defaults
             if(!data || !data.length) return req()// nothing to do
             // handle own events
             i = data.length - 1
+            done = 0
             do {// scan from bottom up (our event are likely to be last in list)
                 switch(data[i].ev){
+                case 'wes4store':
+                    o = data[i].json
+                    if(o && o.store){
+                        res = Ext.StoreManager.lookup(o.store)// e.g.: 'lftpd'
+                        if(res){
+                            setTimeout(function deferStore_fireEventArgs(){
+                                res.fireEventArgs('wes4store', [o])
+                            }, 0)
+                            done++
+                        } else {
+                            console.warn('`wes4store` not found: ' + o.store)
+                        }
+                    } else {
+                        console.warn('`wes4store`: no `store` argument of event')
+                    }
+                break
                 // broadcasts: 'login@um' 'initwes@um' 'usts@um' ....
                 default: break
                 // == private events ==
@@ -110,12 +127,14 @@ var defaults
                     if('initwes@um' != data[0].ev &&// this is 1st event
                      !(data[2] && 'login@um' == data[2].ev)){// this is 3d one
                         o = null// do not setup twice if not init
+                        done += 2
                     }
+                    done++
                 }
             } while(i--)
             if(o) req()// setup wes for next events, if not manual status
-
-            return Ext.globalEvents.fireEventArgs(// broadcast !own event
+            // broadcast !own event if there are more events
+            return (done == data.length) ? undefined : Ext.globalEvents.fireEventArgs(
                 'wes4UI',
                 [ success, data ]
             )
@@ -146,3 +165,42 @@ var defaults
         return undefined
     }
 })(Ext.create(App.backend.Connection))
+
+/*
+ * Deliver server-pushed data to Ext.data.store's
+ * `ev`: wes4store
+ * @view:: highlight updated row(s)
+ **/
+Ext.define('App.store.WES',{
+    extend: Ext.data.ArrayStore,
+    view: null,// grid or panel with grid somewhere down
+    listeners:{
+        wes4store: function(json){//{ store: 'storeId', data:[{model}, {model}]}
+        var view, data, model, updated, j
+
+            if(this.view){
+                if(!(view = this.view.view)){// is not grid with view
+                    view = this.view.down('grid').view // look down for a grid
+                }
+            }
+            if(Array.isArray(data = json.data)){
+                for(j = 0; j < data.length; ++j){
+                    if((model = this.getById(data[j].id))){
+                        if((updated = model.set(data[j]))){
+                            // inform interested parties
+                            model.fireEventArgs('datachanged',[ model, updated ])
+                            // if grid view available, highlight row
+                            view && Ext.fly(
+                                view.getNode(view.getRowId(model))
+                            ).highlight('#77FF77',{
+                                attr: 'backgroundColor',
+                                duration: 512
+                            })
+                        }
+                    }
+                }
+                data && data.length && this.fireEventArgs('datachanged')
+            }
+        }
+    }
+})

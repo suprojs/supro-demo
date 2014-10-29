@@ -30,6 +30,12 @@ App.backend.req = (
  *              callback: function callback(err, json, res){...}
  *          }
  *      )
+ * callback: function callback(err, json, res){...}
+ * @err: connection or other low level error
+ * @json: sometimes it can be text, but if 'Content-Type' is 'application/json'
+ *        then  have result of app logic job
+ * @json.success: must be checked by UI app logic code if needed
+ *
  */
 function create_backend_request(conn){
     return function backend_request(url, data, options){
@@ -56,10 +62,12 @@ function create_backend_request(conn){
 
         if('string' == typeof data){
             options.params = data// plain text or JavaScript for `App.backend.JS`
-        } else if('function' == typeof data){
-            callback = data
         } else {
-            options.jsonData = data
+            if('function' == typeof data){
+                callback = data
+            } else {// default data is JSON
+                options.jsonData = data
+            }
             options.headers = {
                 'Content-Type': 'application/json; charset=utf-8'
             }
@@ -68,8 +76,22 @@ function create_backend_request(conn){
         return conn.request(options)
 
         function callbackExtAjax(opts, success, xhr){
-        var json = Ext.decode(xhr.responseText)
+        var json
 
+            if(success){
+                if(~String(xhr.getResponseHeader('Content-Type'))
+                   .indexOf('application/json')){
+                    json = Ext.decode(xhr.responseText)
+                } else {// string is valid JSON
+                    json = xhr.responseText
+                }
+            } else {
+                json = {
+                    err: xhr.timedout ? 'timedout':
+                         xhr.timedout ? 'aborted' : xhr.statusText
+                    }
+                console.error(json, xhr)
+            }
             return callback(!success || !json, json, xhr)
         }
     }
