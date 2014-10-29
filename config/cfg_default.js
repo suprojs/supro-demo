@@ -67,6 +67,7 @@ config = {
        ,pingback: true
        ,cartracker: true
        ,suprobits: true
+       ,'extjs-grid-grouping': true
     },
     extjs:{
         path: 'extjs-4.2/',// find and provide this path; 'extjs/' is for web
