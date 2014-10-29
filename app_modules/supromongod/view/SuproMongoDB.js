@@ -1,4 +1,5 @@
-App.cfg['App.supromongod.view.SuproMongoDB'] = {
+Ext.ns ('App.supromongod.view.SuproMongoDB')    // define ns for class loader
+App.cfg['App.supromongod.view.SuproMongoDB'] = {// fast init
     __noctl: true,// view-only stuff uses fast init
     extend: App.view.Window,
     title: l10n.mongo.title,
