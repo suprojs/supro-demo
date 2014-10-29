@@ -77,8 +77,8 @@ config = {
     },
     backend:{
         file: 'app_main/app_back.js',
-        job_port: 3007,
-        ctl_port: 3008,
+        job_port: 3005,
+        ctl_port: 3006,
         ctl_on_close: null,// set app module handlers for ctl close/app exit
         init_timeout: 123
        ,extjs:{
