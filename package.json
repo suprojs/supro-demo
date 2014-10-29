@@ -1,11 +1,11 @@
 {
-    "name": "supro",
+    "name": "supro demo",
     "license": "MIT",
-    "version": "1.0.002",
-    "description": "v002@2014-10-01: SUPro Demo",
+    "version": "1.0.003",
+    "description": "v003@2014-10-29: SUPro Demo",
     "repository": {
         "type": "git",
-        "url": "http://github.com/olecom/supro-demo.git"
+        "url": "ssh://git@github.com/suprojs/supro-demo"
     },
     "maintainers": [{
         "name": "Oleg Verych",
