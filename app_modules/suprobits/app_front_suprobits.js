@@ -1,6 +1,6 @@
 Ext.ns('FV')
 Ext.ns('App.view')
-App.view.items_Shortcuts = Ext.Array.push(App.view.items_Shortcuts || [], [
+App.view.items_ShortcutsOther = Ext.Array.push(App.view.items_ShortcutsOther || [],[
 {
     text:
 '<img height="64" width="64" src="' + App.backendURL +

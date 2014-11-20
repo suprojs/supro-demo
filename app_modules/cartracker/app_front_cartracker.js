@@ -2,7 +2,7 @@ Ext.ns('App.view')
 Ext.ns('CarTracker')
 
 CarTracker.LoggedInUser = { inRole: function(){ return true } }
-App.view.items_Shortcuts = Ext.Array.push(App.view.items_Shortcuts || [], [
+App.view.items_ShortcutsOther = Ext.Array.push(App.view.items_ShortcutsOther || [],[
 {
     text:
 '<img height="64" width="128" src="' + App.backendURL +

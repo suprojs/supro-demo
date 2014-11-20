@@ -2,33 +2,14 @@
 Ext.define('App.view.desktop.Shortcuts',{
     extend: Ext.toolbar.Toolbar,
     xtype: 'app-shortcuts',
-    style: 'background-color:white;background-image:none;'
-
-    //,stateId: 'dpss'
-    //,stateful: true
+    style: 'background-color:transparent;background-image:none;'
 
     ,enableOverflow: true
     ,defaults: {
         reorderable: true
     }
     ,plugins : [ { xclass: 'Ext.uxo.BoxReorderer' } ]
-    ,initComponent: function shortcuts_dynamic_init(){
-        var me = this
-
-        me.items = Ext.Array.push([
-            {
-            xtype:'splitbutton',
-            text: 'Draggable / Reorderable Menu Button',
-            iconCls: 'ok',
-            menu: App.view.items_Shortcuts// app modules items
-            }
-            ]
-           ,App.view.items_Shortcuts
-        )
-
-        me.callParent(arguments)
-        delete App.view.items_Shortcuts
-    }
+    ,border: 0
 })
 
 Ext.define('App.view.Desktop',
@@ -40,7 +21,8 @@ Ext.define('App.view.Desktop',
    ,style: 'overflow: hidden;'
    ,border: false
    ,items:[
-        { xtype: 'app-shortcuts' }
+    { xtype: 'app-shortcuts', items: App.view.items_Shortcuts }
+   ,{ xtype: 'app-shortcuts', items: App.view.items_ShortcutsOther }
     ]
    ,initComponent:
     function init_Desktop(){
