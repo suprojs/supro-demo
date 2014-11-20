@@ -71,6 +71,7 @@ config = {
        ,pingback: true
        ,cartracker: true
        ,suprobits: true
+       ,Ticker_ExtJs_4: true
        ,'extjs-grid-grouping': true
     },
     extjs:{
