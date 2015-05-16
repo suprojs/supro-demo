@@ -20,6 +20,7 @@ Ext.define('ENJSMS.view.Viewport',
 {
     extend: App.view.Window,
     title: 'Picture of ENJSMS.view',
+    wmId: 'ENJSMS.view.Viewport',
     wmImg: App.backendURL + '/enjsms/enjsms.png',
     wmTooltip: 'enjSMS',
     autoScroll: true,
