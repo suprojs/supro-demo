@@ -106,4 +106,11 @@ l10n.so = { lang: 'en'
        ,sert_from: 'sert_from'
        ,sert_to: 'sert_to'
     }
+   ,tipObject:{
+        name: '<b>name</b>: Enter unique name/id of an object with specified prefix',
+        more: 'Enter description ob an object',
+        WinObjects:
+        'When creating specify type first <br>then other info<br>' +
+        'While editting, id can not be changed.'
+   }
 }

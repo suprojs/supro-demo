@@ -14,23 +14,20 @@ console.log('req.method:', req.method)
     if('stat' == p){
         return req.method == 'GET' ? objectStat() : objectStatUpdate()
     }
-
-
     setImmediate(no_such_subapi)
     return undefined
 
     function no_such_subapi(){
-        res.json(ret.success = !(ret.data = '!such_subapi: ' + local.url.pathname), ret)
+        ret.success = !(ret.data = '!such_subapi: ' + local.url.pathname)
+        return res.json(ret)
     }
 
 
 // F A R S H //
 
-
     function objectStat(){
         /*, { sort: { id: -1 }}*/
         return db.getCollection('listObjects').find(null).toArray(mkItems)
-
     }
 
     function objectStatUpdate(){
@@ -39,7 +36,7 @@ console.log('req.method:', req.method)
         if(!Array.isArray(req.json)) return next('!arr_json')
         if(1 != req.json.length) return next('!arr_one')
 
-        opts = { upsert: req.method !== 'PUT', 'new': true }
+        opts = { upsert: req.method !== 'PUT','new': true }
         obj = req.json[0]
 
         if(!obj.name || obj.name.replace(/^\w*$/, '')){
@@ -53,7 +50,7 @@ console.log('req.method:', req.method)
 
             if(opts.upsert){// new object
                 re = new RegExp(
-                    '^' + api.cfg.backend.mongodb.db_name + '[.]'
+                    '^' + local.cfg.db_name + '[.]'
                         + obj.name +
                     '$'
                 )
@@ -90,7 +87,7 @@ console.log('req.method:', req.method)
     function mkItems(err, items){
         if(err) return next(err)
 
-        return res.json(ret.data = items, ret)
+        return res.json((ret.data = items, ret))
     }
 }
 

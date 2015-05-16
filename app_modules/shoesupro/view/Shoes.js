@@ -394,7 +394,7 @@ Ext.define('App.shoesupro.view.FormOrder',{
                 width: 194,
                 items:[
                 {
-                    xtype: 'fieldcontainer',
+                    xtype: 'container',
                     layout: 'hbox',
                     margins: 0,
                     items:[
@@ -406,9 +406,11 @@ Ext.define('App.shoesupro.view.FormOrder',{
                         name: '#',
                         width: 82,
                         value: 31,
-                        minValue: 1
-                    },
-                    {
+                        minValue: 1,
+                        height: 29 // fix auto horizontal align
+                    },              // height and alignment should me the same
+                    {               // in same row
+                        height: 29,// fix auto horizontal align
                         xtype: 'numberfield',
                         cls: 'so-season-num',
                         itemId: 'year',
@@ -420,7 +422,7 @@ Ext.define('App.shoesupro.view.FormOrder',{
                     ]
                 },
                 {
-                    xtype: 'fieldcontainer',
+                    xtype: 'container',
                     layout: 'hbox',
                     margins: 0,
                     items:[
@@ -484,7 +486,7 @@ Ext.define('App.shoesupro.view.FormOrder',{
                             renderer: function(v){
                                 return ''
 + '<div style="border: 1px solid #FF7700;padding: 4px;font-weight: bold;">'
-+ App.User.data.name
++ App.User.name
 + '</div>'
                             }
                         },
@@ -1012,7 +1014,7 @@ Ext.define('App.shoesupro.view.GridColumnFilter',{
                     }
                 })
             },
-            keyup: function applyTextFilter(){
+            keyup: function applyText_OR_Filter(){
             var v, i
                ,re = this.value
                ,grid = this.up('grid')
@@ -1092,7 +1094,7 @@ Ext.define('App.shoesupro.view.GridColumnSKU',{
                     html: l10n.so.filterTxtSKU
                 })
             },
-            keyup: function applyTextFilter(){
+            keyup: function applyText_SUBMATCH_Filter(){
             // first space -- any match before '@'
             var v = this.value, grid = this.up('grid')
                ,idx = this.up('gridcolumn').dataIndex
@@ -1492,7 +1494,7 @@ Ext.define('App.shoesupro.view.GridOrderItems',{
         undo = me.down('button[iconCls=so-undo]')
         me.btnSave = save = me.down('button[iconCls=so-save]')
 
-        /*Ext.util.Observable.capture(me, function(){
+        /*(Ext.mixin.Observable || Ext.util.Observable).capture(me, function(){
             console.log(arguments)
         })*/
         return
@@ -1964,7 +1966,7 @@ Ext.define('App.shoesupro.view.GridInStockList',{
     storeModel: App.shoesupro.model.InStockList,
     bindGZises: false,//cfg
     initComponent: function initGridInStockList(){
-    var me = this, s
+    var me = this
 
         l10n._ns = 'so'
         Ext.applyIf(me,{//TODO dynamic auth-z-n selection of available buttons
@@ -2145,7 +2147,7 @@ Ext.define('App.shoesupro.view.GridInStockItems',{
         } else {// new doc
         /*
          * Creating a new document with single request via Store is impossible.
-         * It craps something while sending data and reading it back to existing
+         * It craps something while sending data and reads it back to existing
          * items.
          *
          * Thus create doc and configre grid && store via `backend.req()`
@@ -2168,7 +2170,7 @@ Ext.define('App.shoesupro.view.GridInStockItems',{
                 me.store.totalCount = json.data.length
                 me.store.loadRecords(json.data, me.store.addRecordsOptions)
 
-                return undefined
+                return void 0
             })
         }
         me.store = new App.shoesupro.Store({
@@ -2446,7 +2448,7 @@ console.log(arguments)
                 whvolume: 0,
                 square: 0,
                 more: '',
-                add_by: App.User.data.name
+                add_by: App.User.name
             })
             finish_btn.setText(l10n.btnAdd)// change inherited defaults
         } else {// edit
@@ -2638,7 +2640,7 @@ Ext.define('App.shoesupro.view.FormObject',{
                         renderer: function(){
                             return ''
 + '<div style="border: 1px solid #FF7700;padding: 4px;font-weight: bold;">'
-+ App.User.data.name + '</div>'
++ App.User.name + '</div>'
                         }
                     },
                     {

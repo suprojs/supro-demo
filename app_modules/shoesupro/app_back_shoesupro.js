@@ -6,7 +6,7 @@ var app = api.app
    ,name = '/shoesupro', n
 
     n = '/lib/logic'
-    app.use(name + n, require('.' + n)(api))
+    app.use(name + n, require('.' + n)(api, cfg))
     app.use(name, api.connect['static'](__dirname + '/'))
 
     app.use('/n31/', api.connect['static'](__dirname + '/../../data/so/n31/'))

@@ -19,7 +19,9 @@ var id = 'App.shoesupro.controller.Shoes'
         me.shoes = shoes
         me.tabs = tabs
 
-        tabs.updateFirstTab(Ext.widget({ xtype: 'so_allObjectStat'/*'so_panelDocs'*/ }))//!!!dev
+        tabs.updateFirstTab(Ext.widget({ xtype: 'so_panelDocs' }))
+
+//        tabs.updateFirstTab(Ext.widget({ xtype: 'so_allObjectStat'/*'so_panelDocs'*/ }))//!!!dev
 
         //shoes.down('so_gridOrderStat button[action=create_season]').fireEvent('click')//!!!dev of the form
 
@@ -96,11 +98,11 @@ Ext.define(id, cfg)
 function OrderStat(override){
 var id = 'App.shoesupro.controller.GridOrderStat'
    ,cfg = {
-    extend: App.controller.Base,
+    extend: Ext.app.Controller,
     __name: id,
     //grid: null,// ref to view
     init:
-    function anticontrollerOrderStatInit(){
+    function controllerOrderStatInit(){
     var me = this
        ,grid = Ext.ComponentQuery.query('so_gridOrderStat')[0]// it is the only one
        ,so_orders = grid.store
@@ -123,26 +125,22 @@ var id = 'App.shoesupro.controller.GridOrderStat'
 
         me.control({
             'so_gridOrderStat button[action=create_season]':{
-				click: create_editSeason
+                click: create_editSeason
             },
 
-            'so_formOrderAdd image#cold':{
+            'so_formOrder image#cold':{
                 click: select_season
             },
-            'so_formOrderAdd image#hot':{
+            'so_formOrder image#hot':{
                 click: select_season
             },
 
             'so_gridOrderStat':{
                 select: toolsEnable,
                 itemdblclick: openSeason,
-				destroy: destroyGridOrderStat
+                destroy: destroyGridOrderStat
             }
         })
-
-        /*Ext.util.Observable.capture(tabs, function(){
-            console.log(arguments)
-        })*/
 
         so_orders.reload({ action: 'read', start: 0 })
 
@@ -168,7 +166,7 @@ var id = 'App.shoesupro.controller.GridOrderStat'
                 model = new so_orders.model({
                     '#': 31,
                     add: new Date,// NOTE: Form clears the time in Date if format w/o time
-                    add_by: App.User.data.name
+                    add_by: App.User.name
                 })
             } else {// edit
                 finish_btn.setText(l10n.btnEdit)
@@ -210,7 +208,7 @@ var id = 'App.shoesupro.controller.GridOrderStat'
         var name
            ,form = season.up('form')
            ,year = form.down('#year').getValue()
-
+console.log('here')
             if('hot' == season.itemId){
                 name = l10n.so.hot_season + year
                 form.down('#cold').el.removeCls('selected')
@@ -279,7 +277,7 @@ TAMARIS	1-22449-001	5	12	23	29	28	21	10	4						132	жен
 var i, j, c, t, line, item, larr, total
    ,id_in
    ,pcode_check = { }, clmns = { }, g_sizes
-   ,user = App.User.data.name, at = new Date
+   ,user = App.User.name, at = new Date
 
     data = data.replace(/\r/g, '').split('\n')
     if(!store || !data.length || !data[1] || !data[2]){

@@ -11,11 +11,11 @@ Ext.define('App.shoesupro.view.PanelDocs',{
     header: false,
     cls: 'panel-docs',
     iconCls: 'doc-help',
-    initComponent: function() {
-        var dhurl = App.backendURL + '/css/shoesupro/doc-screens/'
-        /**
-         * From 'jsduck' '5.1.0'
-         */
+    initComponent: function(){
+    var dhurl = App.backendURL + '/css/shoesupro/doc-screens/'
+       /**
+        * From 'jsduck' '5.1.0'
+        */
         this.items = [
             { xtype: 'container', html: '<b class="eg">Documentation / Help</b>' },
             Ext.create('Docs.view.ThumbList', {

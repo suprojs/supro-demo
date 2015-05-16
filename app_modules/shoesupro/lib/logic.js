@@ -3,12 +3,13 @@
 
 module.exports = logic
 
-function logic(api){
+function logic(api, cfg){
 var url = require('url')
    ,qs = require('connect/node_modules/qs')
    ,fs = require('fs')
    ,local = {
         url: null,
+        cfg: cfg,
         require:{
             fs: fs
         }
