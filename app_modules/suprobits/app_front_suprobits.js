@@ -1,5 +1,4 @@
 Ext.ns('FV')
-Ext.ns('App.view')
 App.view.items_ShortcutsOther = Ext.Array.push(App.view.items_ShortcutsOther || [],[
 {
     text:
